@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     parameters {
-        string(default: "default", description:"Input the name of this deployment",name:"deployment")
+        string(defaultValue: "default", description:"Input the name of this deployment",name:"deployment")
         choice(choices: ["EU-WEST-2A","EU-WEST-2B","EU-WEST-2C"], description: "Which AZ would you like to use?", name: "az")
-        booleanParam(default:false, description:"Deploy to prod?", name:"confirm")
+        booleanParam(defaultValue:false, description:"Deploy to prod?", name:"confirm")
     }
 
     stages {
