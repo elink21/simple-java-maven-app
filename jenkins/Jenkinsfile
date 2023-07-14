@@ -1,5 +1,12 @@
 pipeline {
     agent any
+
+    parameters {
+        string(default: "default", description:"Input the name of this deployment",name:"deployment")
+        choice(choices: ["EU-WEST-2A","EU-WEST-2B","EU-WEST-2C"], description: "Which AZ would you like to use?", name: "az")
+        booleanParam(default:false, description:"Deploy to prod?", name:"confirm")
+    }
+
     stages {
         stage('Build') {
             steps {
@@ -24,7 +31,7 @@ pipeline {
         
         stage("Complete"){
             steps{
-                sh "echo 'Complete!'"
+                sh "echo The object was deployed to ${params.az} using the deployment: ${params.deployment}"
             }
         }
     }
